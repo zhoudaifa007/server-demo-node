@@ -11,19 +11,21 @@ const query = function (callback, pool, field, table, pageInfo = null, where = n
   if (pageInfo.currentPage <= 0 || !pageInfo.currentPage) pageInfo.currentPage = 1;
   var start = (pageInfo.currentPage - 1) * pageInfo.pageSize;
   var end = pageInfo.pageSize || 10;
+  let isPage = false;
 
   let sql;
   if (pageInfo) {
     if (Object.getPrototypeOf(pageInfo) === PageIfo.prototype) {
       if (where) {
-        sql = `select ${field} from ${table} where ${where} limit ${start},${end}`;
+        sql = `select ${field} from ${table} where ${where} limit ${start},${end};select FOUND_ROWS() as total;`;
       } else {
-        sql = `select ${field} from ${table} limit ${start},${end}`;
+        sql = `select ${field} from ${table} limit ${start},${end};SELECT FOUND_ROWS() as total;`;
       }
     } else {
       console.error('"pageInfo" type error');
       return;
     }
+    isPage = true;
   } else {
     if (where) {
       sql = `select ${field} from ${table} where ${where}`;
@@ -41,7 +43,7 @@ const query = function (callback, pool, field, table, pageInfo = null, where = n
       }
       // 使用完毕之后，将该连接释放回连接池
       connection.release();
-      callback(res);
+      callback(res, isPage);
     });
   });
 }
