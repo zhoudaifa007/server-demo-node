@@ -1,27 +1,26 @@
 const mysqlOperation = require('../utils/connectDataBase');
 const PageIfo = require('../model/PageInfo');
-const dbResultDeal = require('../utils/dbResultDeal')
+const dbResultDeal = require('../utils/dbResultDeal');
 
 const queryById = function (id, operation, currentPage = 0, pageSize = 10) {
   const pool = mysqlOperation.createPool();
   // mysqlOperation.query(operation, connect, 'name', 'user');
   const pageInfo = new PageIfo(currentPage, pageSize);
   mysqlOperation.query(operation, pool, 'name', 'user', pageInfo, 'id = ' + id);
-}
+};
 
 const query = function (operation, currentPage = 0, pageSize = 10) {
   const pool = mysqlOperation.createPool();
   // mysqlOperation.query(operation, connect, 'name', 'user');
   const pageInfo = new PageIfo(currentPage, pageSize);
   mysqlOperation.query(operation, pool, '*', 'user', pageInfo);
-}
+};
 
 function show(result, isPage) {
 
-
   let send = null;
   if (isPage) {
-    const dealRes = dbResultDeal(result)
+    const dealRes = dbResultDeal(result);
     if (dealRes.data.length > 0) {
       send = dealRes;
     } else {
@@ -60,6 +59,8 @@ const router = function (app) {
   app.get('/api/test', function (req, res) {
     res.send('GET request to the homepage');
   });
-}
+};
 
 module.exports = router;
+
+//# sourceMappingURL=user-compiled.js.map
