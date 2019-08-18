@@ -1,0 +1,1 @@
+{"version":3,"sources":["now.js"],"names":[],"mappings":"AAAA,CAAC,UAAS,CAAT,EAAW;AACR,QAAI,cAAc,OAAO,IAAP,CAAY,CAAZ,CAAlB;AACA,WAAO,WAAP;AACH,CAHD,EAGG,iBAHH","file":"now-compiled.js","sourcesContent":["(function(a){\r\n    var encodedData = window.btoa(a);\r\n    return encodedData;\r\n})('123456798888888');"]}

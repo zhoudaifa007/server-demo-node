@@ -12,6 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "js-beautify": "^1.10.2",
     "mysql": "^2.17.1"
+  },
+  "devDependencies": {
+    "javascript-obfuscator": "^0.18.1"
   }
 }

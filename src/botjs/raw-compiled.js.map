@@ -1,0 +1,1 @@
+{"version":3,"sources":["raw.js"],"names":[],"mappings":";AACA,IAAI,MAAM,OAAO,GAAI;;MAArB;;AAIA,IAAI,KAAK,KAAK,GAAL,CAAT;;AAEA,QAAQ,GAAR,CAAY,EAAZ","file":"raw-compiled.js","sourcesContent":["\r\nlet raw = String.raw`(function(){\r\n    return 'hello'\r\n})();`\r\n\r\nlet s1 = eval(raw)\r\n\r\nconsole.log(s1)"]}

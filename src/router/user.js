@@ -1,6 +1,7 @@
 const mysqlOperation = require('../utils/connectDataBase');
 const PageIfo = require('../model/PageInfo');
 const dbResultDeal = require('../utils/dbResultDeal')
+const obfuscator = require('../utils/obfuscator')
 
 const queryById = function (id, operation, currentPage = 0, pageSize = 10) {
   const pool = mysqlOperation.createPool();
@@ -58,7 +59,7 @@ const router = function (app) {
   });
 
   app.get('/api/test', function (req, res) {
-    res.send('GET request to the homepage');
+    res.send(obfuscator.obfuscationResult.getObfuscatedCode());
   });
 }
 
